@@ -3,6 +3,7 @@
         "*.html": "html",
         "main.h": "c",
         "stdlib.h": "c",
-        "mytypes.h": "c"
+        "mytypes.h": "c",
+        "calc_fn.h": "c"
     }
 }

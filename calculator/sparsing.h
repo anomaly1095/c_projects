@@ -34,7 +34,7 @@ _int8 check(char c);
 _int8 check_buffer(char *s, char *c);
 
 
-/// @brief 
-/// @param s 
+/// @brief takes the buffer filters the numbers and symbols 
+/// @param s buffer
 /// @return 
 _int8 parse_for_ll(char *s);

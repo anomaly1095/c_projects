@@ -4,7 +4,8 @@
 #if !defined(MYTYPES_H)
 #define MYTYPES_H
 
-#define MAX_OPERANDS 10 
+#define MAX_OPERANDS 10 // number of allowed operands in a single statement (useless limitations set by me...)
+#define LEN_LL 0x13  // max digits for 64bit signed
 
 #define MAX_UINT8 0xff
 #define MAX_UINT16 0xffff
