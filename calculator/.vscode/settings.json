@@ -4,6 +4,8 @@
         "main.h": "c",
         "stdlib.h": "c",
         "mytypes.h": "c",
-        "calc_fn.h": "c"
+        "calc_fn.h": "c",
+        "stdio.h": "c",
+        "sparsing.h": "c"
     }
 }

@@ -18,23 +18,17 @@ void navigation();
 
 _int8 main(_int8 argc, char **argv){
     switch (argc){
-    case 1:
-        goto shell_mode;
-        break;
-    case 2:
-        goto one_line_mode;
-        break;
-    default:
-        goto too_many_arguments;
-        break;
+    case 1:    goto shell_mode;           break;
+    case 2:    goto one_line_mode;        break;
+    default:   goto too_many_arguments;   break;
     }
     
     one_line_mode:
         get_buffer(argv[1]);
-        return 0;
+        return 0x0;
     shell_mode:
         navigation();
-        return 0;
+        return 0x0;
     too_many_arguments:
         printf("Invalid arguments: ");
         for (int i = 2; i < argc; i++){
@@ -48,24 +42,19 @@ _int8 main(_int8 argc, char **argv){
 
 void navigation(){
     welcome();
-    char *buffer = (char*)calloc(sizeof(char), 255);
+    char *buffer = (char*)calloc(sizeof(char), 0xff);
     _int8 res;
     while (0x1){
         printf("---> ");
-        fgets(buffer, 255, stdin);
+        fgets(buffer, 0xff, stdin);
         res = get_buffer(buffer);
         switch (res){
-        case 0x0:
-            break;
-        case 0x1:
-            goto _exit;
-            break;
-        case 0x2:
-            help();
-        case 0x3:
-            continue;
-        default:
-            break;
+            case 0x0:   break;
+            case 0x1:   goto _exit;   break;
+            case 0x2:   help();   break;
+            case 0x3:
+                continue;
+            case 0x4:   fprintf(stderr, "overflow! value too big\n");   goto _exit;
         }
     }
     _exit:
@@ -86,7 +75,7 @@ void welcome(){
     printf("\t\t#         # #    #      #\n");
     printf("\t\t#        #####   #      #\n");
     printf("\t\t#       #     #  #      #\n");
-    printf("\t\t###### #       # ###### ######\n\n");
+    printf("\t\t###### #       # ###### ######\n\n"); 
 }
 
 
