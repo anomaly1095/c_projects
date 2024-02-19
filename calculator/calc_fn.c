@@ -7,18 +7,39 @@ void calc(QueueNode **head) {
         printf("Queue is empty.\n");
         return;
     }
-
     double result = 0;
-    while (dequeue(head) != NULL){ // remove first head before even starting since it doesnt have useful data
-        if ((*head)->valtype == integer){
-            
+    QueueNode *current, *item_before, *item_next;
+    while (*head != NULL) {
+        current = dequeue(head);
+        if (current->valtype == integer) {
+            result += current->NodeVal.integer;
+        } else if (current->valtype == symbol) {
+            switch (current->NodeVal.symbol){
+                case 0x21:   // !
+
+                    break;   
+                case 0x25:   // %
+   
+                    break;   
+                case 0x2A:   // *
+   
+                    break;   
+                case 0x2B:   // +
+   
+                    break;   
+                case 0x2D:   // -
+   
+                    break;   
+                case 0x2F:   // /
+
+                    break;
+            }
+        } else if (current->valtype == decimal) {
+            result += current->NodeVal.decimal;
         }
-        else if ((*head)->valtype == symbol){   // finish this
-            
-        }
-        else if ((*head)->valtype == decimal){
-            
-        }
+
+        // Free the memory of the dequeued node
+        free(current);
     }
 
     printf("Calculation result: %lf\n", result);

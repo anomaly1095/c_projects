@@ -2,11 +2,14 @@
 
 
 void queue(QueueNode **head, QueueNode *Node) {
+    if ((*head)->previous == NULL){
+        *head = Node;
+        return;
+    }
     QueueNode *temp = *head;
     while (temp->previous != NULL) {
         temp = temp->previous;
     }
-
     temp->previous = Node;
     Node->next = temp;
     Node->previous = NULL;
