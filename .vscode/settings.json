@@ -1,3 +1,8 @@
 {
-    "cmake.sourceDirectory": "/home/amnesia2/Documents/C_Files"
+    "cmake.sourceDirectory": "/home/amnesia2/Documents/C_Files",
+    "files.associations": {
+        "*.html": "html",
+        "unistd.h": "c",
+        "inet.h": "c"
+    }
 }
