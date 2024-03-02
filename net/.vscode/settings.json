@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "inet.h": "c",
+        "unistd.h": "c"
+    }
+}
