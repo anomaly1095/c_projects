@@ -91,7 +91,6 @@ int main(){
 
     free_players(p1, p2);
     free_grid(grid);
-    free(grid);
     return 00;
 }
 
@@ -120,7 +119,7 @@ void play(char **grid, Player *p1, Player *p2){
 
         while (!winner(grid, p1, p2) && check_full(grid)){//same game
             print_grid(grid);
-            printf("\t\t%s's turn: \n>>> ", current->name);
+            printf("%s's turn: \n>>> ", current->name);
 
             fflush(stdout);
             keyboard_in = get_char_input();
