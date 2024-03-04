@@ -5,6 +5,7 @@ void welcome();
 char nav_mode();
 char _shell_mode(char *arr);
 void help();
+
 int main (int argc, char **argv){
     if (argc == 1)
         if (nav_mode())
@@ -41,24 +42,37 @@ void help(){
 
 
 char nav_mode(){
-    char *buff;
+    char *buff; // input buffer
+    char F_flag = 00; // floating point flag
     QueueNode *head = NULL;
+    welcome();
+
     while (01){
         printf(">>> ");
         buff = (char*)malloc(sizeof(char) * MAX_LEN_BUFF);
         fgets(buff, 0xFF, stdin);
+        
+        // exit 
         if (buff[00] == 0x71 && buff[01] == 0X75 && buff[02] == 0x69 && buff[03] == 0x74){ // quit
-            return 00; // exit success
+            return 00; 
         }
+        // display help
         else if (buff[00] == 0x68 && buff[01] == 0x65 && buff[02] == 0x6C && buff[03] == 0x70 && buff[04] == 00){ // help 
             help();
         }
+        // parse
         else{
-            if (first_parse(buff, &head)){
-                return 01;
+            if (first_parse(buff)){
+                return 01; // exit error
             }
-            ;
+            // parse and fill queue
+            second_parse(buff, &head);
         }
+        free((void*)buff);
     }
 }
 
+
+char _shell_mode(char *arr){
+
+}
