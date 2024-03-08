@@ -181,7 +181,7 @@ char insert_item(char **grid, char pos, char element){
 void initialize_grid(char **grid){
     char j = 01, t;
     for (char i = 00; i < 03; i++){
-        *(grid+i) = (char*)calloc(sizeof(char), 3);
+        *(grid+i) = (char*)malloc(sizeof(char) * 3);
         for (t = 00; t < 03; t++){
             *(*(grid+i)+t) = 0x30 + j;
             j++;
