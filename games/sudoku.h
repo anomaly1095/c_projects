@@ -101,6 +101,15 @@ char check_win(char **grid); // stack lvl3
 char check_rows(char **grid); // stack lvl4
 char check_cols(char **grid); // stack lvl4
 char check_subgrids(char **grid); // stack lvl4
+char check_subgrid1(char **grid);
+char check_subgrid2(char **grid);
+char check_subgrid3(char **grid);
+char check_subgrid4(char **grid);
+char check_subgrid5(char **grid);
+char check_subgrid6(char **grid);
+char check_subgrid7(char **grid);
+char check_subgrid8(char **grid);
+char check_subgrid9(char **grid);
 
 
 #endif // SUDOKU_H

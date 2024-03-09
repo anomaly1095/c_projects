@@ -5,7 +5,8 @@
 int main(int argc, char **argv){
     if (argc == 2 && (argv[1] == "--h" || argv[1] == "help")){
         help();
-    }else if (argc == 2 && (argv[1] != "--h" && argv[1] != "help")){
+    }else if (argc >= 2 && (argv[1] != "--h" && argv[1] != "help")){
+        fprintf(stderr, "Invalid args\n");
         return 01;
     }
     Game *game = start_game();
@@ -27,9 +28,10 @@ void play_game(Game *game){
     while (!check_win(game->grid)){
         navigate(game->grid);
     }
+
     system("clear");
     char *win_msg = (char*)malloc(sizeof(char) * 100), j = 0;
-    sprintf(win_msg, "Congratulations %s you just beat a level %c Sudoku!!!\n", game->player_name, game->lvl);
+    sprintf(win_msg, "\n\n\t\tCongratulations %s you just beat a level %c Sudoku!!!\n", game->player_name, game->lvl);
     
     for (size_t i = 0; i < 0x10; i++){
         while (win_msg[j] != 00){
@@ -41,9 +43,19 @@ void play_game(Game *game){
 }
 
 void navigate(char **grid){
-    //introduce the concept of readonly ...
+    
 }
 
+void display_grid(char **grid){
+    for (size_t i = 0; i < RANGE; i++){
+        printf("\t\t#####################################\n");
+        printf("\t\t");
+        for (size_t j = 0; j < RANGE; j++){
+            printf("# %c", grid[i][j]);
+        }printf(" #\n");
+    }
+    printf("\t\t#####################################\n");
+}
 
 char check_win(char **grid){
     if (!check_rows(grid) || !check_cols(grid) || !check_rows(grid)){
@@ -62,7 +74,7 @@ char check_rows(char **grid){
                 free(found);
                 return 00;
             }
-            found[val] = 01;
+            found[val]++;
         }
         free(found);
     }
@@ -79,7 +91,7 @@ char check_cols(char **grid){
                 free(found);
                 return 00;
             }
-            found[val] = 01;
+            found[val]++;
         }
         free(found);
     }
@@ -87,18 +99,170 @@ char check_cols(char **grid){
 }
 
 char check_subgrids(char **grid){
-    
+    char res = 01;
+    res &= check_subgrid1(grid);
+    res &= check_subgrid2(grid);
+    res &= check_subgrid3(grid);
+    res &= check_subgrid4(grid);
+    res &= check_subgrid5(grid);
+    res &= check_subgrid6(grid);
+    res &= check_subgrid7(grid);
+    res &= check_subgrid8(grid);
+    res &= check_subgrid9(grid);
+    return res;
 }
 
+char check_subgrid1(char **grid){
+    char i, j, *found, val;
 
-void display_grid(char **grid){
-    for (size_t i = 0; i < RANGE; i++){
-        printf("\t\t#####################################\n");
-        printf("\t\t");
-        for (size_t j = 0; j < RANGE; j++){
-            printf("# %c", grid[i][j]);
-        }printf(" #\n");
-    }
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 00; i < 03; i++){
+        for (j = 00; j < 03; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
+}
+
+char check_subgrid2(char **grid){
+    char i, j, *found, val;
+    
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 00; i < 03; i++){
+        for (j = 03; j < 06; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
+}
+
+char check_subgrid3(char **grid){
+    char i, j, *found, val;
+    
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 00; i < 03; i++){
+        for (j = 06; j < RANGE; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
+}
+
+char check_subgrid4(char **grid){
+    char i, j, *found, val;
+    
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 03; i < 06; i++){
+        for (j = 00; j < 03; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
+}
+
+char check_subgrid5(char **grid){
+    char i, j, *found, val;
+    
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 03; i < 06; i++){
+        for (j = 03; j < 06; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
+}
+
+char check_subgrid6(char **grid){
+    char i, j, *found, val;
+    
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 03; i < 06; i++){
+        for (j = 06; j < RANGE; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
+}
+
+char check_subgrid7(char **grid){
+    char i, j, *found, val;
+    
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 06; i < RANGE; i++){
+        for (j = 00; j < 03; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
+}
+
+char check_subgrid8(char **grid){
+    char i, j, *found, val;
+    
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 06; i < RANGE; i++){
+        for (j = 03; j < 06; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
+}
+
+char check_subgrid9(char **grid){
+    char i, j, *found, val;
+    
+    found = (char*)calloc(sizeof(char), RANGE);
+    for (i = 06; i < RANGE; i++){
+        for (j = 06; j < RANGE; j++){
+            val = (grid[i][j] ^ _MASK) -1; // convert char to int and sub1 for index alignement
+            if (found[val] == 01){
+                free(found);
+                return 00;
+            }
+            found[val]++;
+        }
+    }free(found);
+    return 01;
 }
 
 
