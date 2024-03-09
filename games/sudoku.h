@@ -2,54 +2,47 @@
 #include <stdlib.h>
 #include <time.h>
 
-//####################################### definitions
+typedef struct Game{
+    char  *player_name;
+    char lvl;
+    char **grid;
+}Game;
+typedef struct Node{
+    char val;
+    char rep;
+}Node;
 
-#if !defined(SUDOKU_H)
-#define SUDOKU_H
-#define grid2D char**
+#define LEN_NAME    0x1E
+#define ONE         0X31
+#define TWO         0X32
+#define THREE       0X33
+#define FOUR        0X34
+#define FIVE        0X35
+#define SIX         0X36
+#define SEVEN       0X37
+#define EIGHT       0X38
+#define NINE        0X39
+#define RANGE       0xA
 
-#define MIN_ROW_COL 0x30
-#define MAX_ROW_COL 0x38
-#define RANGE_ROW_COL 0x9 // MAX-MIN+1
-#define MIN_VAL 0x31
-#define MAX_VAL 0x39
-#define RANGE_VAL 0x9
-#define CONVERSION_MASK 0b110000
-#define ZERO 0x30
-#define ONE 0x31
-#define TWO 0x32
-#define THREE 0x33
-#define FOUR 0x34
-#define FIVE 0x35
-#define SIX 0x36
-#define SEVEN 0x37
-#define EIGHT 0x38
-#define NINE 0x39
- 
-#define LVL1 0X14
-#define LVL2 0x19
-#define LVL3 0x1E
-#define LVL4 0x23
-#define LVL5 0x28
+Node nodes[9] = {
+        [0].val = ONE, [0].val = 0x0,
+        [1].val = TWO, [1].val = 0x0,
+        [2].val = THREE, [2].val = 0x0,
+        [3].val = FOUR, [3].val = 0x0,
+        [4].val = FIVE, [4].val = 0x0,
+        [5].val = SIX, [5].val = 0x0,
+        [6].val = SEVEN, [6].val = 0x0,
+        [7].val = EIGHT, [7].val = 0x0,
+        [8].val = NINE, [8].val = 0x0,
+    };
 
-// initialize grid will need an algo for random generations
-grid2D **initialize_grid();
-void generate_vals_for_grid(grid2D grid, char level);
-void generate20(grid2D grid);
-void generate25(grid2D grid);
-void generate30(grid2D grid);
-void generate35(grid2D grid);
-void generate40(grid2D grid);
-void insert_in_grid(grid2D grid, char row, char col, char val);
-
-void print_grid(grid2D grid);
-void play(grid2D grid);
-void print_grid(grid2D grid);
-char check_cell(grid2D grid, char row, char col, char val);
-char check_rows(grid2D grid);
-char check_cols(grid2D grid);
-char check_indiv_subgrid(grid2D grid, char row, char col, char val);
-char check_subgrids(grid2D grid);
-char check_win(grid2D grid);
-
-#endif // SUDOKU_H
+int main();
+void help();
+Game *start_game();
+char **initialize_Grid();
+void fill_grid(Game *game);
+void fill_lvl1(char **grid);
+void fill_lvl2(char **grid);
+void fill_lvl3(char **grid);
+void fill_lvl4(char **grid);
+void fill_lvl5(char **grid);
