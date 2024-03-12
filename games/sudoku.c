@@ -607,4 +607,3 @@ char check_insert_subgrid9(char **grid, char val){
     }
     return 01;
 }
-
