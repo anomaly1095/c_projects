@@ -46,7 +46,7 @@
   }_File_sys_tree_node;
   
   _File_sys_tree_node __ROOT = {
-    .type.dir.d_name = 'root',
+    .type.dir.d_name = "root",
     .type.dir.e_level = el2,
     .type.dir.owner = "admin"
   };

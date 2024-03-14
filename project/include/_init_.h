@@ -8,7 +8,7 @@
 
 #ifndef _INIT_H
   #define _INIT_H 01
-
+  
   #define _USAGE_         "Usage: [-u username] [-p password]\n"
   #define _MISSING_U      "Missing: [-u password]\n"
   #define _MISSING_P      "Missing: [-p username]\n"
@@ -29,7 +29,7 @@
 
   /// @brief 
   /// @param      _u 
-  void login_success(_ui8 _u);
+  void login_success(_ui8 *_u);
 
   /// @brief  
   void login_fail();

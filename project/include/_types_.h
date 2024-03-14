@@ -3,11 +3,13 @@
 #ifndef _ERRORS_
   #define _ERRORS_      0x1
   #define _SUCCESS      0x0
-  #define NO_ARGS       0x1
-  #define U_MISSING     0x2
-  #define P_MISSING     0x3
-  #define F_NOT_FOUND   0x4
-  #define WRONG_CRED    0x5
+  #define _FAILURE      0x1
+  #define NO_ARGS       0x2
+  #define U_MISSING     0x3
+  #define P_MISSING     0x4
+  #define F_NOT_FOUND   0x5
+  #define WRONG_CRED    0x6
+  #define HASH_FAIL     0x7
   #define ARCH_ERROR    0x32
 
 #endif
@@ -28,7 +30,7 @@
     #define _ll64   signed long long
     #define _ull64  unsigned long long    
   #else
-    #error ARCH_ERROR
+    #error ARCH_ERROR //32 bit arch not supported
   #endif
 
 #endif // _TYPES_ 1

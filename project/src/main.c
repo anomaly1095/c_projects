@@ -1,6 +1,4 @@
-#include "_init_.h"
-
-
+#include "../include/_init_.h"
 
 int main(int argc, char **argv){
   // min number of args
@@ -9,12 +7,16 @@ int main(int argc, char **argv){
     exit(NO_ARGS);
   }
 
-  _login(argv[1], argv[2]);
-  _shell();
+  _login(argc, argv);
+  // _shell();
   return 0x0;
 }
 
-void _help(){}
+
+void _help(){
+
+}
+
 
 void _login(_i32 argc, char **argv){
   _ui8 res_p = 00, res_u = 00, *_u, *_p;
@@ -42,8 +44,9 @@ void _login(_i32 argc, char **argv){
   _check_p_u(_p, _u);
 }
 
+
 void _check_p_u(_ui8 *_p, _ui8 *_u) {
-  FILE *shadow = fopen("root/shadow", "r");
+  FILE *shadow = fopen("../root/admin/shadow", "r");
   if (shadow == NULL)
     exit(F_NOT_FOUND);
 
@@ -66,8 +69,8 @@ void _check_p_u(_ui8 *_p, _ui8 *_u) {
 }
 
 
-void login_success(_ui8 _u){
-  FILE *_syslogs = fopen("root/sys_logs.log", "w");
+void login_success(_ui8 *_u){
+  FILE *_syslogs = fopen("../root/admin/sys_logs.log", "a");
   if (_syslogs == NULL)
     exit(F_NOT_FOUND);
   time_t currentTime;
@@ -75,8 +78,10 @@ void login_success(_ui8 _u){
   fprintf(_syslogs, "User: %s logged at %s\n", _u, ctime(&currentTime));
   fclose(_syslogs);
 }
+
+
 void login_fail(){
-  FILE *_syslogs = fopen("root/sys_logs.log", "w");
+  FILE *_syslogs = fopen("../root/admin/sys_logs.log", "a");
   if (_syslogs == NULL)
     exit(F_NOT_FOUND);
   time_t currentTime;
